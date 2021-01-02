@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none; }
+
+body {
+  font-family: "Open Sans", sans-serif; }
+
+.btn:hover {
+  transform: scale(1.1); }
+
+header {
+  background-color: black;
+  font-family: sans-serif;
+  color: white;
+  height: 80px;
+  align-items: center; }
+
+#nav {
+  text-align: right; }
+
+#nav > button {
+  color: white;
+  border: solid 4px white;
+  padding: 10px;
+  border-radius: 10px; }
+
+#nav > button:hover {
+  font-family: sans-serif;
+  color: #00398f;
+  border: solid 4px #00398f;
+  border-radius: 10px; }
+
+#shoppingSection {
+  margin-top: 40px;
+  animation-name: appear;
+  animation-duration: 1s;
+  position: relative; }
+
+#selectBlue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px solid black; }
+
+#selectBlue > button {
+  background-color: #00398f;
+  color: white;
+  border: solid rgba(0, 57, 143, 0) 1px;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 2em;
+  margin: 50px; }
+
+#selectBlue > img {
+  border: solid 4px black;
+  border-radius: 10px; }
+
+#price {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; }
+
+#addButton {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; }
+
+#addButton > button {
+  background-color: #00398f;
+  border-color: #00398f;
+  color: white; }
+
+#colTitles {
+  background-color: #00398f; }
+
+#colTitles > ul {
+  font-size: 1.2em;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+
+/* Animations */
+@keyframes appear {
+  from {
+    left: -40px;
+    opacity: 0%; }
+  to {
+    left: 0;
+    opacity: 100%; } }
+
+/*# sourceMappingURL=stylesShop.css.map */
