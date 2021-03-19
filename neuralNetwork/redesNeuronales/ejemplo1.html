@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo 1</title>
+    <script src="https://unpkg.com/brain.js"></script>
+</head>
+<body>
+    <h1>Programa para calcular peligro.</h1>
+    <p>Considere esta situación: Es re gil y se pierde en el bosque. Camina un poco y se topa con un abismo. Como es bien gil decide acercarse. Ahora
+        evaluaremos el peligro en base a las caracteristicas del abismo:
+    </p>
+    <hr>
+    <h3>Seleccione la cercanía del abismo:</h3>
+    <p>¿Qué tan lejos se encuentra usted del borde del abismo?</p>
+    <select id="closeness">
+        <option selected disabled>---</option>
+        <option value=1>Cerca</option>
+        <option value=0>Lejos</option>
+    </select>
+    <h3>Seleccione si hay una valla cerca al abismo</h3>
+    <p>¿El abismo tiene alguna valla protectora?</p>
+    <select id="fence">
+        <option selected disabled>---</option>
+        <option value=0>Hay valla</option>
+        <option value=1>No hay valla</option>
+    </select>
+    <br>
+    <br>
+    <button id="calcularPeligro" onclick="calcularPeligro()">Calcular peligro</button>
+    <hr>
+    <h2>Peligro: <span id="veredicto"></span></h2>
+
+
+    <!--Red Neuronal-->
+
+    <script type="text/javascript">
+
+
+        var neuralNetwork = new brain.NeuralNetwork();
+
+        // Train this shit nigga
+
+        neuralNetwork.train([
+            {input: {cercania:1.0, valla:1.0}, output:{peligro:1}},
+            {input: {cercania:0.0, valla:0.0}, output:{peligro:0}},
+            {input: {cercania:0.0, valla:1.0}, output:{peligro:.35}},
+            {input: {cercania:1.0, valla:0.0}, output:{peligro:.55}}
+        ]);
+
+        function calcularPeligro(){
+
+            let closenessSelection = document.getElementById("closeness");
+            let fenceSelection = document.getElementById("fence");
+
+            let closeness = closenessSelection.options[closenessSelection.selectedIndex].getAttribute('value');
+            let fence = fenceSelection.options[fenceSelection.selectedIndex].getAttribute('value');
+
+            let input = {
+                cercania: closeness,
+                valla: fence
+            };
+
+            let peligro = neuralNetwork.run(input);
+
+            console.log(peligro.peligro);
+
+            let span = document.getElementById("veredicto");
+
+            if(peligro.peligro < .4){
+                span.innerHTML = "Peligro nulo"
+                span.style = "color:green;";
+            }else if(peligro.peligro >= .4 && peligro.peligro <= .6){
+                span.innerHTML = "Peligro moderado";
+                span.style = "color:yellow;";
+            }else if(peligro.peligro > .6){
+                span.innerHTML = "Peligro altisimo";
+                span.style = "color:red;";
+            }
+        }
+
+    </script>
+</body>
+</html>
